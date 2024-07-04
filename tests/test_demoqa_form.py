@@ -1,28 +1,33 @@
-from selene import browser, be, have
-import os
+from modules.pages.registration_form_page import StudentRegistrationForm
 
 
 def test_practice_form_create_user():
-    browser.open('/automation-practice-form')
-    browser.element('#firstName').type('Eugene')
-    browser.element('#lastName').type('Tester')
-    browser.element('#userEmail').type('test@test.qom')
-    browser.element('[for="gender-radio-1"]').click()
-    browser.element('#userNumber').type('7999321123')
-    browser.element('#dateOfBirthInput').click()
-    browser.element('.react-datepicker__month-select>option:nth-child(6)').click()
-    browser.element('.react-datepicker__year-select>[value = "2000"]').click()
-    browser.element('.react-datepicker__day--031').click()
-    browser.element('#subjectsInput').type('Comp').press_enter()
-    browser.element('#subjectsInput').type('eco').press_enter()
-    browser.element('//label[@for="hobbies-checkbox-3"]').click()
-    browser.element('#uploadPicture').send_keys(os.path.abspath("files/photo_man.png"))
-    browser.element('#currentAddress').type('QA street, 123')
-    browser.element('#react-select-3-input').type("Haryana").press_enter()
-    browser.element('#react-select-4-input').type("Panipat").press_enter()
-    browser.element('#submit').click()
-    browser.element('#example-modal-sizes-title-lg').should(be.present)
-    browser.element('.table').all('td').even.should(have.exact_texts
-                                                    ('Eugene Tester', 'test@test.qom', 'Male',
-                                                     '7999321123', '31 May,2000', 'Computer Science, Economics',
-                                                     'Music', 'photo_man.png', 'QA street, 123', 'Haryana Panipat'))
+    registration_form = StudentRegistrationForm()
+    registration_form.open()
+    registration_form.input_first_name("Eugene")
+    registration_form.input_last_name("Tester")
+    registration_form.input_user_email("test@test.qom")
+    registration_form.scroll_down(0, 500)
+    registration_form.choose_gender("Male")
+    registration_form.input_user_phone_number("7999321123")
+    registration_form.scroll_down(500, 700)
+    registration_form.input_date_of_birth("31","May", "2000")
+    registration_form.input_subjects("Computer Science")
+    registration_form.choose_hobbies()
+    registration_form.upload_user_photo()
+    registration_form.input_user_addres("QA street, 123")
+    registration_form.select_state("Haryana")
+    registration_form.select_city("Panipat")
+    registration_form.submit_form()
+    registration_form.assert_user_should_have_registered(
+        'Eugene Tester',
+        'test@test.qom',
+        'Male',
+        '7999321123',
+        '31 May,2000',
+        'Computer Science',
+        'Music',
+        'photo_man.png',
+        'QA street, 123',
+        'Haryana Panipat')
+
