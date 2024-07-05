@@ -1,6 +1,3 @@
-import dataclasses
-
-
 class User:
     name = str
     last_name = str
@@ -37,3 +34,22 @@ class User:
         self.phone = phone
         self.day_of_birth = day_of_birth
         self.photo = photo
+
+
+class UserTextBox:
+    name = str
+    email = str
+    current_address = str
+    permanent_address = str
+
+    def __init__(self, name, email, current_address, permanent_address):
+        self.name = name
+        self.email = email
+        self.current_address = current_address
+        self.permanent_address = permanent_address
+
+
+user_text_box_test = UserTextBox('John',
+                                 'joedoe@te.st',
+                                 'Current st. 13',
+                                 'Per road 31')

@@ -90,3 +90,14 @@ class StudentRegistrationForm:
         self.select_state(user.state)
         self.select_city(user.city)
         self.submit_form()
+
+    def open_text_box_form(self, text_box_from=None):
+        browser.open('/automation-practice-form')
+        browser.all('[id^=google_ads][id$=container__]').with_(
+            timeout = 10).wait_until(have.size_greater_than_or_equal(3)
+                                     )
+        browser.all('[id^=google_ads][id$=container__]').perform(command.js.remove)
+        browser.execute_script('document.querySelector(".body-height").style.transform = "scale(.90)"')
+        browser.all('.element-group').first.should(have.text('Elements')).click()
+        browser.all('.menu-list .text').element_by(have.exact_text('Text Box')).click()
+        return text_box_from
