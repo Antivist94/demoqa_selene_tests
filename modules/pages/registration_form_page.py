@@ -1,7 +1,5 @@
 import os
-
 from selene import browser, have, command, be
-from selenium.webdriver import ActionChains
 
 
 class StudentRegistrationForm:
@@ -26,12 +24,6 @@ class StudentRegistrationForm:
         browser.element('#userEmail').type(user_email)
 
     def input_date_of_birth(self, day, month, year):
-        # element = browser.element('#dateOfBirthInput')
-        # action = ActionChains(browser)
-        # action.move_to_element(element).click().perform()
-        # browser.element('.react-datepicker__month-select').type(month)
-        # browser.element(f'.react-datepicker__year-select>[value = "{year}"]').click()
-        # browser.element(f'.react-datepicker__day--0{day}:not(.react-datepicker__day--outside-month)').click()
         browser.element('#dateOfBirthInput').click()
         browser.element('.react-datepicker__month-select').type(month)
         browser.element(f'.react-datepicker__year-select>[value = "{year}"]').click()
@@ -39,9 +31,6 @@ class StudentRegistrationForm:
 
     def choose_gender(self, gender):
         browser.element(f'[name=gender][value={gender}]+label').click()
-        # element = browser.element(f'[name=gender][value={gender}]+label')
-        # action = ActionChains(browser)
-        # action.move_to_element(element).click().perform()
 
     def input_user_phone_number(self, number):
         browser.element('#userNumber').type(number)
