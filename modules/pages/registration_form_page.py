@@ -1,5 +1,6 @@
-import os
 from selene import browser, have, command, be
+
+import paths
 
 
 class StudentRegistrationForm:
@@ -9,10 +10,7 @@ class StudentRegistrationForm:
             timeout = 10).wait_until(have.size_greater_than_or_equal(3)
                                      )
         browser.all('[id^=google_ads][id$=container__]').perform(command.js.remove)
-        browser.execute_script('document.querySelector(".body-height").style.transform = "scale(.90)"')
-
-    def scroll_down(self, position_1, position_2):
-        browser.execute_script(f"window.scrollTo({position_1}, {position_2})")
+        browser.driver.execute_script('document.querySelector(".body-height").style.transform = "scale(.90)"')
 
     def input_first_name(self, name):
         browser.element('#firstName').type(name)
@@ -30,6 +28,7 @@ class StudentRegistrationForm:
         browser.element(f'.react-datepicker__day--0{day}:not(.react-datepicker__day--outside-month)').click()
 
     def choose_gender(self, gender):
+        browser.element(f'[name=gender][value={gender}]+label').perform(command.js.scroll_into_view)
         browser.element(f'[name=gender][value={gender}]+label').click()
 
     def input_user_phone_number(self, number):
@@ -41,8 +40,8 @@ class StudentRegistrationForm:
     def choose_hobbies(self):
         browser.element('[for="hobbies-checkbox-3"]').click()
 
-    def upload_user_photo(self):
-        browser.element('#uploadPicture').send_keys(os.path.abspath("../files/photo_man.png"))
+    def upload_user_photo(self, file_name):
+        browser.element('#uploadPicture').send_keys(paths.path(file_name))
 
     def input_user_addres(self, address):
         browser.element('#currentAddress').type(address)
