@@ -1,3 +1,6 @@
+import paths
+
+
 class User:
     name = str
     last_name = str
@@ -53,3 +56,19 @@ user_text_box_test = UserTextBox('John',
                                  'joedoe@te.st',
                                  'Current st. 13',
                                  'Per road 31')
+
+user_reg_form = User(name = 'Eugene', last_name = 'Tester', email = 'test@test.qom',
+                     gender = 'Male',
+                     phone = '7999321123',
+                     day_of_birth = '31',
+                     month_of_birth = 'May',
+                     year_of_birth = '2000',
+                     subjects = 'Computer Science',
+                     hobbies = 'Music',
+                     street = 'QA street, 123',
+                     state = 'Haryana',
+                     city = 'Panipat',
+                     photo = f'{paths.file}')
+
+
+print(paths.file)

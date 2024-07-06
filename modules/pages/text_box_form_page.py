@@ -13,7 +13,7 @@ class TextBoxFrom:
             timeout = 10).wait_until(have.size_greater_than_or_equal(3)
                                      )
         browser.all('[id^=google_ads][id$=container__]').perform(command.js.remove)
-        browser.execute_script('document.querySelector(".body-height").style.transform = "scale(.90)"')
+        browser.driver.execute_script('document.querySelector(".body-height").style.transform = "scale(.90)"')
 
     def open_simple_registration_form(self, text_box_from=None):
         browser.open('/automation-practice-form')
@@ -56,7 +56,7 @@ class TextBoxFrom:
 
     def assert_text_box_output_get_user_info(self, user: UserTextBox):
         browser.element('#output').should(have.exact_text(f'Name:{user.name}\n'
-                                                           f'Email:{user.email}\n'
-                                                           f'Current Address :{user.current_address}\n'
-                                                           f'Permananet Address :{user.permanent_address}'))
+                                                          f'Email:{user.email}\n'
+                                                          f'Current Address :{user.current_address}\n'
+                                                          f'Permananet Address :{user.permanent_address}'))
         return self

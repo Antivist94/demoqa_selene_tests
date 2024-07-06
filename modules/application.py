@@ -6,6 +6,7 @@ class AppManager:
     def __init__(self):
         self.text_box_form = TextBoxFrom()
         self.left_panel = StudentRegistrationForm()
+        self.student_reg_form = StudentRegistrationForm()
 
 
 app = AppManager()
