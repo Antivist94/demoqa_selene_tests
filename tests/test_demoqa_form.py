@@ -1,4 +1,4 @@
-import script_os
+import paths
 from modules.pages.registration_form_page import StudentRegistrationForm
 from modules.users import User
 
@@ -16,6 +16,6 @@ def test_practice_form_create_user():
                 street = 'QA street, 123',
                 state = 'Haryana',
                 city = 'Panipat',
-                photo = script_os.file)
+                photo = paths.file_name)
     registration_form.register(user)
     registration_form.assert_user_should_have_registered(user)
