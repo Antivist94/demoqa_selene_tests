@@ -11,9 +11,12 @@ def load_env():
     load_dotenv()
 
 
-selenoid_login = os.getenv("SELENOID_LOGIN")
-selenoid_pass = os.getenv("SELENOID_PASS")
-selenoid_url = os.getenv("SELENOID_URL")
+# selenoid_login = os.getenv("SELENOID_LOGIN")
+# selenoid_pass = os.getenv("SELENOID_PASS")
+# selenoid_url = os.getenv("SELENOID_URL")
+selenoid_login = 'user1'
+selenoid_pass = '1234'
+selenoid_url = 'selenoid.autotests.cloud'
 
 
 @pytest.fixture(scope = "function", autouse = True)

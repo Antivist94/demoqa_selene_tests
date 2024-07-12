@@ -5,12 +5,13 @@ import paths
 from modules.pages.registration_form_page import StudentRegistrationForm
 from modules.users import User
 
+
 @allure.tag("UI")
 @allure.severity(Severity.NORMAL)
 @allure.label("owner", "Evdokimenko")
 @allure.feature("Форма регистрации")
 @allure.story("Заполнение формы регистрации demoqa")
-@allure.link("https://demoqa.com", name="Testing")
+@allure.link("https://demoqa.com", name = "Testing")
 def test_practice_form_create_user():
     with allure.step('Открыть форму регистрации https://demoqa.com/automation-practice-form'):
         registration_form = StudentRegistrationForm()
