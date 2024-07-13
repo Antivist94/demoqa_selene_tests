@@ -3,14 +3,14 @@ from selene import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from dotenv import load_dotenv
-import os
+from utils import attach
 
 
 @pytest.fixture(scope = "session", autouse = True)
 def load_env():
     load_dotenv()
 
-
+#Todo разобраться с енвами - без них тест работает, также надо дописать шаги со скриншотами и логами
 # selenoid_login = os.getenv("SELENOID_LOGIN")
 # selenoid_pass = os.getenv("SELENOID_PASS")
 # selenoid_url = os.getenv("SELENOID_URL")
@@ -43,5 +43,10 @@ def browser_manager():
         options = options)
 
     browser.config.driver = driver
+
+    attach.add_logs(browser)
+    attach.add_screenshot(browser)
+    attach.add_video(browser)
+
     yield
     browser.quit()
