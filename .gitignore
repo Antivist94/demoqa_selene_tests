@@ -164,3 +164,5 @@ cython_debug/
 .idea
 .DS_Store
 .env
+.allure-results
+.tests/allure-results
