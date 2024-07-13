@@ -45,9 +45,11 @@ def browser_manager(load_env):
 
     browser.config.driver = driver
 
+    yield browser
+
+    attach.add_html(browser)
     attach.add_logs(browser)
     attach.add_screenshot(browser)
     attach.add_video(browser, selenoid_url)
 
-    yield
     browser.quit()
