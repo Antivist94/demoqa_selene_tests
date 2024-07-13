@@ -26,7 +26,7 @@ def test_practice_form_create_user():
                 street = 'QA street, 123',
                 state = 'Haryana',
                 city = 'Panipat',
-                photo = paths.file_name)
+                photo = paths.path())
     with allure.step('Заполнить данные по пользователю и подтвердить регистрацию'):
         registration_form.register(user)
     with allure.step('ASSERT: Введенные данные пользователя отображаются в таблице'):

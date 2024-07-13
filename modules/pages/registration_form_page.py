@@ -42,7 +42,7 @@ class StudentRegistrationForm:
         browser.element('[for="hobbies-checkbox-3"]').click()
 
     def upload_user_photo(self, file_name):
-        browser.element('#uploadPicture').send_keys(paths.path(file_name))
+        browser.element('#uploadPicture').send_keys(file_name)
 
     def input_user_addres(self, address):
         browser.element('#currentAddress').type(address)
@@ -66,7 +66,7 @@ class StudentRegistrationForm:
             f'{user.day_of_birth} {user.month_of_birth},{user.year_of_birth}',
             f'{user.subjects}',
             f'{user.hobbies}',
-            f'{user.photo}',
+            f'photo_man.png',
             f'{user.street}',
             f'{user.state} {user.city}'
         ))
@@ -81,7 +81,7 @@ class StudentRegistrationForm:
         self.input_date_of_birth(user.day_of_birth, user.month_of_birth, user.year_of_birth)
         self.input_subjects(user.subjects)
         self.choose_hobbies()
-        self.upload_user_photo(paths.file_name)
+        self.upload_user_photo(user.photo)
         self.input_user_addres(user.street)
         self.select_state(user.state)
         self.select_city(user.city)

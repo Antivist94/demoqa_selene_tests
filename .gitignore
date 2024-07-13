@@ -166,3 +166,4 @@ cython_debug/
 .env
 .allure-results
 .tests/allure-results
+.allure

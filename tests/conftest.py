@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from utils import attach
 
 
-@pytest.fixture(scope = "function", autouse = True)
+@pytest.fixture(scope = "session", autouse = True)
 def load_env():
     load_dotenv()
     selenoid_login = os.getenv("SELENOID_LOGIN")
@@ -21,11 +21,10 @@ def browser_manager(load_env):
     selenoid_login, selenoid_pass, selenoid_url = load_env
 
     browser.config.base_url = 'https://demoqa.com'
-    browser.config.window_height = '1080'
-    browser.config.window_width = '1920'
+    browser.config.window_height = 1080
+    browser.config.window_width = 1920
 
     driver_options = webdriver.ChromeOptions()
-    driver_options.page_load_strategy = 'eager'
     browser.config.driver_options = driver_options
 
     options = Options()
@@ -34,9 +33,10 @@ def browser_manager(load_env):
         "browserVersion": "100.0",
         "selenoid:options": {
             "enableVNC": True,
-            "enableVideo": False
+            "enableVideo": True
         }
     }
+    options.page_load_strategy.page_load_strategy = 'eager'
 
     options.capabilities.update(selenoid_capabilities)
     driver = webdriver.Remote(
@@ -50,6 +50,6 @@ def browser_manager(load_env):
     attach.add_html(browser)
     attach.add_logs(browser)
     attach.add_screenshot(browser)
-    attach.add_video(browser, selenoid_url)
+    attach.add_video(browser)
 
     browser.quit()
