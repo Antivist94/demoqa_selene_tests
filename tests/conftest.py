@@ -10,22 +10,13 @@ from utils import attach
 @pytest.fixture(scope = "session", autouse = True)
 def load_env():
     load_dotenv()
-    selenoid_login = os.getenv("SELENOID_LOGIN")
-    selenoid_pass = os.getenv("SELENOID_PASS")
-    selenoid_url = os.getenv("SELENOID_URL")
-    yield selenoid_login, selenoid_pass, selenoid_url
 
 
 @pytest.fixture(scope = "function", autouse = True)
 def browser_manager(load_env):
-    selenoid_login, selenoid_pass, selenoid_url = load_env
-
     browser.config.base_url = 'https://demoqa.com'
     browser.config.window_height = 1080
     browser.config.window_width = 1920
-
-    driver_options = webdriver.ChromeOptions()
-    browser.config.driver_options = driver_options
 
     options = Options()
     selenoid_capabilities = {
@@ -37,6 +28,10 @@ def browser_manager(load_env):
         }
     }
     options.page_load_strategy.page_load_strategy = 'eager'
+
+    selenoid_login = os.getenv("SELENOID_LOGIN")
+    selenoid_pass = os.getenv("SELENOID_PASS")
+    selenoid_url = os.getenv("SELENOID_URL")
 
     options.capabilities.update(selenoid_capabilities)
     driver = webdriver.Remote(
