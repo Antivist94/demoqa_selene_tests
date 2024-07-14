@@ -1,6 +1,5 @@
 from selene import browser, have, command, be
-
-import paths
+from paths import path
 from modules.users import User
 
 
@@ -42,7 +41,7 @@ class StudentRegistrationForm:
         browser.element('[for="hobbies-checkbox-3"]').click()
 
     def upload_user_photo(self, file_name):
-        browser.element('#uploadPicture').send_keys(file_name)
+        browser.element('#uploadPicture').send_keys(f"{path()}/{file_name}")
 
     def input_user_addres(self, address):
         browser.element('#currentAddress').type(address)
@@ -66,7 +65,7 @@ class StudentRegistrationForm:
             f'{user.day_of_birth} {user.month_of_birth},{user.year_of_birth}',
             f'{user.subjects}',
             f'{user.hobbies}',
-            f'photo_man.png',
+            f'{user.photo}',
             f'{user.street}',
             f'{user.state} {user.city}'
         ))

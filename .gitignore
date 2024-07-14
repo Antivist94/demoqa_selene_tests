@@ -165,5 +165,5 @@ cython_debug/
 .DS_Store
 .env
 .allure-results
-.tests/allure-results
+.tests/allure-results/*
 .allure
