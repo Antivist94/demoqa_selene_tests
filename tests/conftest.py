@@ -30,7 +30,7 @@ def browser_manager(load_env, browser_name):
     options = Options()
     selenoid_capabilities = {
         "browserName": browser_name,
-        "browserVersion": 'latest',
+        "browserVersion": '100',
         "selenoid:options": {
             "enableVNC": True,
             "enableVideo": True
