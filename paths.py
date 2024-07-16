@@ -1,6 +1,5 @@
 from pathlib import Path
-import files
 
 
-def path():
-    return str(Path(__file__).parent.joinpath('files'))
+def path(file_name):
+    return str(Path(__file__).parent.joinpath('files', file_name))

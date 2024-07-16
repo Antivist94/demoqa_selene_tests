@@ -1,7 +1,5 @@
 import allure
 from allure_commons.types import Severity
-
-import paths
 from modules.pages.registration_form_page import StudentRegistrationForm
 from modules.users import User
 

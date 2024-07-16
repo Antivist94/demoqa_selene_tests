@@ -41,7 +41,7 @@ class StudentRegistrationForm:
         browser.element('[for="hobbies-checkbox-3"]').click()
 
     def upload_user_photo(self, file_name):
-        browser.element('#uploadPicture').send_keys(f"{path()}/{file_name}")
+        browser.element('#uploadPicture').send_keys(f"{path(file_name)}")
 
     def input_user_addres(self, address):
         browser.element('#currentAddress').type(address)
